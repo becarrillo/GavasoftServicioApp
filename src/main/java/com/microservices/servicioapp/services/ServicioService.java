@@ -30,21 +30,15 @@ public class ServicioService {
     public Servicio getOne(String servicioNombre) {
         final List<Servicio> serviciosList = servicioRepository.findAll();
         final Optional<Servicio> servicioOpt = serviciosList.stream().filter(s -> Objects.equals(s.getServicioNombre(), servicioNombre)).findAny();
-        
-        if (servicioOpt.isPresent()) {
-            return servicioOpt.get();
-        }
-        return null;
+
+        return servicioOpt.orElse(null);
     }
 
     public Servicio getOneById(String servicioId) {
         final List<Servicio> serviciosList = servicioRepository.findAll();
         final Optional<Servicio> servicioOpt = serviciosList.stream().filter(s -> Objects.equals(s.getServicioId(), servicioId)).findAny();
-        
-        if (servicioOpt.isPresent()) {
-            return servicioOpt.get();
-        }
-        return null;
+
+        return servicioOpt.orElse(null);
     }
 
     public Servicio updateOne(Servicio foundServicio, Servicio servicio) {

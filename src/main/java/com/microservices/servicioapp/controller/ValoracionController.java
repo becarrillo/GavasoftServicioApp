@@ -1,29 +1,42 @@
 package com.microservices.servicioapp.controller;
 
-import com.microservices.servicioapp.entities.ServicioValoracion;
+import com.microservices.servicioapp.entities.Servicio;
+import com.microservices.servicioapp.entities.Valoracion;
+import com.microservices.servicioapp.services.ServicioService;
 import com.microservices.servicioapp.services.ValoracionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/servicios/valoraciones")
+@RequestMapping(path = "/valoraciones")
 public class ValoracionController {
     @Autowired
     private ValoracionService valoracionService;
 
+    @Autowired
+    private ServicioService servicioService;
+
     @GetMapping(path = "/")
-    public ResponseEntity<List<ServicioValoracion>> obtenerValoraciones() {
-        final ResponseEntity<List<ServicioValoracion>> response = new ResponseEntity<List<ServicioValoracion>>(valoracionService.getValoracionesList(), HttpStatus.OK);
-        return response;
+    public List<Valoracion> obtenerValoraciones() {
+        return valoracionService.listAll();
     }
 
-    @PostMapping(path = "/nueva")
-    public ResponseEntity<ServicioValoracion> guardarValoracionSobreServicio(@RequestBody() ServicioValoracion servicioValoracion) {
-        final ResponseEntity<ServicioValoracion> response = new ResponseEntity<ServicioValoracion>(valoracionService.saveValoracion(servicioValoracion), HttpStatus.CREATED);
-        return response;
+    @PostMapping(path = "/servicios/{servicioId}/agregar/nueva")
+    public Valoracion valorarServicio(
+            @PathVariable("servicioId") String servicioId,
+            @RequestBody() Valoracion valoracion
+    ) {
+        return valoracionService.save(valoracion);
+    }
+
+    @GetMapping(path = "/{servicioValoracionId}/borrar")
+    public String eliminarValoracionDeServicio(@PathVariable("servicioValoracionId") String servicioValoracionId) {
+        String message;
+        message = "Valoración con id ";
+        message = message.concat(valoracionService.deleteOneById(servicioValoracionId));
+        message = message.concat(" eliminada con éxito");
+        return message;
     }
 }

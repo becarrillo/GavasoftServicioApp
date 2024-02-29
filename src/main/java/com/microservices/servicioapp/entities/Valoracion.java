@@ -11,18 +11,17 @@ import java.time.LocalDateTime;
 /**
  * @author Brando Elí Carrillo Pérez
  */
-@Entity
-@Table(name = "valoraciones_servicios")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-public class ServicioValoracion {
+@Entity
+@Table(name = "valoraciones")
+public class Valoracion {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Unsigned
     @Column(name = "valoracion_id")
-    private int valoracionId;
+    private String valoracionId;
 
     @Column(name = "puntuacion")
     private byte puntuacion;
@@ -30,9 +29,17 @@ public class ServicioValoracion {
     @Column(name = "opinion")
     private String opinion;
 
+    @Column(name = "servicio_id")
+    private String servicioId;
+
     @Column(name = "fecha_hora")
     private LocalDateTime fechaHora;
 
-    @Column(name = "servicio_id")
-    private String servicioId;
+    public Valoracion(
+            byte puntuacion,
+            String opinion
+    ) {
+        this.puntuacion = puntuacion;
+        this.opinion = opinion;
+    }
 }

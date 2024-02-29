@@ -1,7 +1,7 @@
 package com.microservices.servicioapp.services;
 
 import com.microservices.servicioapp.exceptions.ResourceNotFoundException;
-import com.microservices.servicioapp.entities.ServicioValoracion;
+import com.microservices.servicioapp.entities.Valoracion;
 import com.microservices.servicioapp.repository.ValoracionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +19,17 @@ public class ValoracionService {
     @Autowired
     private ValoracionRepository valoracionRepository;
 
-    public ServicioValoracion saveValoracion(ServicioValoracion servicioValoracion) throws RuntimeException {
-        if (!valoracionRepository.findById(servicioValoracion.getValoracionId()).isPresent()) {
-            final LocalDateTime fechaHora = LocalDateTime.now(ZoneId.of("GMT-5"));
-            servicioValoracion.setFechaHora(fechaHora);
-            return valoracionRepository.save(servicioValoracion);
-        }
-        throw new RuntimeException("El id de valoración ya existe");
+    public Valoracion save(Valoracion valoracion) throws RuntimeException {
+        final LocalDateTime fechaHora = LocalDateTime.now(ZoneId.of("GMT-5"));
+        valoracion.setFechaHora(fechaHora);
+        return valoracionRepository.save(valoracion);
     }
 
-    public List<ServicioValoracion> getValoracionesList() {
+    public List<Valoracion> listAll() {
         return valoracionRepository.findAll();
     }
 
-    public ServicioValoracion getValoracion(int id) {
+    public Valoracion getValoracion(String id) {
         if (valoracionRepository.findById(id).isPresent()) {
             return valoracionRepository.findById(id).get();
         } else {
@@ -40,5 +37,13 @@ public class ValoracionService {
                     "Tal vez la valoración con id del parámetro fue borrada y no se ha actualizado el estado de la página, verifique, recurso no encontrado"
             );
         }
+    }
+
+    public String deleteOneById(String servicioValoracionId) {
+        if (valoracionRepository.findAll().stream().noneMatch(v -> v.getValoracionId() == servicioValoracionId)) {
+            return null;
+        }
+        valoracionRepository.deleteById(servicioValoracionId);
+        return servicioValoracionId;
     }
 }

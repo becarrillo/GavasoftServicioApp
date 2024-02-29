@@ -3,6 +3,7 @@ package com.microservices.servicioapp.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Time;
+import java.util.List;
 
 /**
  * @author Brando Elí Carrillo Pérez
