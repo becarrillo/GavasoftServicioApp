@@ -30,7 +30,7 @@ public class Servicio {
     private Time duracion;
 
     @Column(name = "precio")
-    private Integer precio;
+    private int precio;
 
     @Column(name = "img_url")
     private String imgUrl;
@@ -39,7 +39,7 @@ public class Servicio {
             String servicioNombre,
             String descripcion,
             Time duracion,
-            Integer precio,
+            int precio,
             String imgUrl
     ) {
         this.servicioNombre = servicioNombre;

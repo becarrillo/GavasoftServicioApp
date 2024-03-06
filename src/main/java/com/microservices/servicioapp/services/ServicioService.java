@@ -35,9 +35,7 @@ public class ServicioService {
     }
 
     public Servicio getOneById(String servicioId) {
-        final List<Servicio> serviciosList = servicioRepository.findAll();
-        final Optional<Servicio> servicioOpt = serviciosList.stream().filter(s -> Objects.equals(s.getServicioId(), servicioId)).findAny();
-
+        final Optional<Servicio> servicioOpt = servicioRepository.findById(servicioId);
         return servicioOpt.orElse(null);
     }
 

@@ -26,6 +26,11 @@ public class ServicioController {
         return servicioService.getOne(servicioNombre);
     }
 
+    @GetMapping(path = "/{servicioId}/precio")
+    public Integer obtenerPrecioxServicioId(@PathVariable("servicioId") String id) {
+        return servicioService.getOneById(id).getPrecio();
+    }
+
     @GetMapping
     public List<Servicio> listarServicios() {
         return servicioService.getAll();
