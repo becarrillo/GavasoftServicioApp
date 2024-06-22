@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@CrossOrigin("http://USUARIO-APP")
 @RestController
-@RequestMapping(path = "/servicios")
+@RequestMapping(path = "/v1/servicios")
 public class ServicioController {
 
     @Autowired
@@ -16,14 +17,19 @@ public class ServicioController {
 
     @PostMapping(path = "/agregar/nuevo")
     public Servicio agregarServicio(@RequestBody Servicio servicio) {
-        log.info("Se está agregando el servicio '{}'", servicio.toString());
+        log.info("Se agregó un servicio con éxito: '{}'", servicio.toString());
         final Servicio newServicio = servicioService.save(servicio);
         return newServicio;
     }
 
-    @GetMapping(path = "/{name}")
+    @GetMapping(path = "/consultar-por-nombre/{name}")
     public Servicio consultarServicio(@PathVariable("name") String servicioNombre) {
         return servicioService.getOne(servicioNombre);
+    }
+
+    @GetMapping(path = "/{servicioId}")
+    public Servicio consultarServicioPorId(@PathVariable String servicioId) {
+        return servicioService.getOneById(servicioId);
     }
 
     @GetMapping(path = "/{servicioId}/precio")

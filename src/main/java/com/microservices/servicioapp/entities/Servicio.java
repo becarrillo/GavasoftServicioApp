@@ -2,8 +2,6 @@ package com.microservices.servicioapp.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Time;
-import java.util.List;
 
 /**
  * @author Brando Elí Carrillo Pérez
@@ -27,7 +25,7 @@ public class Servicio {
     private String descripcion;
 
     @Column(name = "duracion")
-    private Time duracion;
+    private short duracion;
 
     @Column(name = "precio")
     private int precio;
@@ -38,7 +36,7 @@ public class Servicio {
     public Servicio(
             String servicioNombre,
             String descripcion,
-            Time duracion,
+            short duracion,
             int precio,
             String imgUrl
     ) {

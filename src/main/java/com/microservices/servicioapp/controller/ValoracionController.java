@@ -1,6 +1,5 @@
 package com.microservices.servicioapp.controller;
 
-import com.microservices.servicioapp.entities.Servicio;
 import com.microservices.servicioapp.entities.Valoracion;
 import com.microservices.servicioapp.services.ServicioService;
 import com.microservices.servicioapp.services.ValoracionService;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/valoraciones")
+@RequestMapping(path = "/v1/valoraciones")
 public class ValoracionController {
     @Autowired
     private ValoracionService valoracionService;

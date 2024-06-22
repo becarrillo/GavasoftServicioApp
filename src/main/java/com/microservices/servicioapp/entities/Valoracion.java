@@ -2,11 +2,11 @@ package com.microservices.servicioapp.entities;
 
 import jakarta.persistence.*;
 import jdk.jfr.Unsigned;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 /**
  * @author Brando Elí Carrillo Pérez
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "valoraciones")
+@Table(name = "valoraciones_de_servicios")
 public class Valoracion {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -32,8 +32,14 @@ public class Valoracion {
     @Column(name = "servicio_id")
     private String servicioId;
 
-    @Column(name = "fecha_hora")
-    private LocalDateTime fechaHora;
+    @Column(name = "fecha")
+    private LocalDate fecha;
+
+    public Valoracion(
+            byte puntuacion
+    ) {
+        this.puntuacion = puntuacion;
+    }
 
     public Valoracion(
             byte puntuacion,

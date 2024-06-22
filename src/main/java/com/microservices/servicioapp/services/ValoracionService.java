@@ -6,7 +6,7 @@ import com.microservices.servicioapp.repository.ValoracionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class ValoracionService {
     private ValoracionRepository valoracionRepository;
 
     public Valoracion save(Valoracion valoracion) throws RuntimeException {
-        final LocalDateTime fechaHora = LocalDateTime.now(ZoneId.of("GMT-5"));
-        valoracion.setFechaHora(fechaHora);
+        final LocalDate fecha = LocalDate.now(ZoneId.of("GMT-5"));  // Captura de hora local Bogotá
+        valoracion.setFecha(fecha);
         return valoracionRepository.save(valoracion);
     }
 
