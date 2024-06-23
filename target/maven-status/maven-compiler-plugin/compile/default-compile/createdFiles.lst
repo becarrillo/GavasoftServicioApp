@@ -1,0 +1,12 @@
+com/microservices/servicioapp/services/ValoracionService.class
+com/microservices/servicioapp/controller/ServicioController.class
+com/microservices/servicioapp/repository/ServicioRepository.class
+com/microservices/servicioapp/configs/RestTemplateConfig.class
+com/microservices/servicioapp/repository/ValoracionRepository.class
+com/microservices/servicioapp/exceptions/controllers/GlobalExceptionController.class
+com/microservices/servicioapp/ServicioAppApplication.class
+com/microservices/servicioapp/controller/ValoracionController.class
+com/microservices/servicioapp/entities/Valoracion.class
+com/microservices/servicioapp/exceptions/ResourceNotFoundException.class
+com/microservices/servicioapp/entities/Servicio.class
+com/microservices/servicioapp/services/ServicioService.class
