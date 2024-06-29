@@ -15,7 +15,7 @@ spring:
 
 eureka:
   instance:
-    prefer-ip-address: true
+    instance-id: SERVICIO-APP
   client:
     fetch-registry: true
     register-with-eureka: true
