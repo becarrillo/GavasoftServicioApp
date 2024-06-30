@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@CrossOrigin("http://USUARIO-APP")
+@CrossOrigin("http://usuario-app.railway.internal:8081")
 @RestController
 @RequestMapping(path = "/v1/servicios")
 public class ServicioController {
