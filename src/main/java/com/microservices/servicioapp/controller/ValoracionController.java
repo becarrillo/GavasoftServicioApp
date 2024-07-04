@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://usuario-app.railway.internal:8081")
 @RequestMapping(path = "/v1/valoraciones")
 public class ValoracionController {
     @Autowired
